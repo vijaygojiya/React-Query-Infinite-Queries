@@ -4,11 +4,13 @@ import {RootStackParamsList} from '../types/navigation';
 import TabNavigator from './TabNavigator';
 import Routes from './routes';
 import {LoginScreen} from '../screens';
+import {useAuth} from '../hooks';
 
 const RootStack = createNativeStackNavigator<RootStackParamsList>();
 
 const RootNavigator = () => {
-  const isLoggedIn = false;
+  const {isLoggedIn} = useAuth();
+
   return (
     <RootStack.Navigator
       screenOptions={{headerShown: false, animation: 'slide_from_left'}}>
