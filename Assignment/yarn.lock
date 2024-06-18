@@ -2348,9 +2348,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^20.1.0":
-  version: 20.1.0
-  resolution: "@react-native-firebase/app@npm:20.1.0"
+"@react-native-firebase/app@npm:19.2.2":
+  version: 19.2.2
+  resolution: "@react-native-firebase/app@npm:19.2.2"
   dependencies:
     opencollective-postinstall: ^2.0.3
     superstruct: ^0.6.2
@@ -2361,22 +2361,22 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 85e509be9dedfca72552b1e393c020ef1de1e5604078ad9da262719f9ce17a9c4be89a66d4db70615865846afdaa1bf34c2a614275b50fb8e6ab86368a21e1be
+  checksum: 6bab63a70a92f8576a40ea5181ee37c3f07b1b9b3954574a6f1eb6aa9ddd807a5508ac6a775b48da4a04126fd43e228c018b428cf29f3bbc66cb0bc0febcb300
   languageName: node
   linkType: hard
 
-"@react-native-firebase/auth@npm:^20.1.0":
-  version: 20.1.0
-  resolution: "@react-native-firebase/auth@npm:20.1.0"
+"@react-native-firebase/auth@npm:19.2.2":
+  version: 19.2.2
+  resolution: "@react-native-firebase/auth@npm:19.2.2"
   dependencies:
     plist: ^3.1.0
   peerDependencies:
-    "@react-native-firebase/app": 20.1.0
+    "@react-native-firebase/app": 19.2.2
     expo: ">=47.0.0"
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 44d5897c938a24dd67a57b95759e03679ebc11ffe6d907ac110974d8ebf719c68bcdf42fb9c2759ffa34c74bcb032de35df98a4dd0a3a824f223b4f535f93abe
+  checksum: 604cae344761df014ee4243d02e3d4e478b83eacdef33bf66a57370dba5c82c4326d30166463de5eaba1ad17a0899adf516aa85ca2bfe330433bbc83b270328e
   languageName: node
   linkType: hard
 
@@ -2843,8 +2843,8 @@ __metadata:
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
     "@react-native-async-storage/async-storage": ^1.23.1
-    "@react-native-firebase/app": ^20.1.0
-    "@react-native-firebase/auth": ^20.1.0
+    "@react-native-firebase/app": 19.2.2
+    "@react-native-firebase/auth": 19.2.2
     "@react-native/eslint-config": ^0.72.2
     "@react-native/metro-config": ^0.72.12
     "@tsconfig/react-native": ^3.0.0

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "175719928028",
+    "project_id": "scopex-1ed90",
+    "storage_bucket": "scopex-1ed90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175719928028:android:f7b8605d436e93dc7e6419",
+        "android_client_info": {
+          "package_name": "com.scopex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175719928028-mesm8pseqib2dupisqnpf11odnqb7gn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scopex",
+            "certificate_hash": "bb121350697c228f87111f3443a1aa026bc5324e"
+          }
+        },
+        {
+          "client_id": "175719928028-s9uifq3gmf4imi3kqbl41cdhh5gfvdik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scopex",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "175719928028-0kkbo9ichq3bm4lv8chcvutgt2tvpndu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF5sIq6d0OLXDjRHUy6MG1X-qbYupyKs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175719928028-0kkbo9ichq3bm4lv8chcvutgt2tvpndu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
