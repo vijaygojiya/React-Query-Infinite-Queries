@@ -2,13 +2,14 @@ import {
   Pressable,
   PressableProps,
   Text,
-  TextInput,
+  TextInput as RNTextInput,
   TextInputProps,
   View,
 } from 'react-native';
-import React, {ReactNode, forwardRef, memo} from 'react';
+import React, {ReactNode, forwardRef, memo, useMemo} from 'react';
 import {useTheme} from '@react-navigation/native';
 import styles from './styles';
+import {BottomSheetTextInput} from '@gorhom/bottom-sheet';
 
 interface AppTextInputProps extends TextInputProps {
   rightIcon?: ReactNode | null;
@@ -16,9 +17,10 @@ interface AppTextInputProps extends TextInputProps {
   label: string;
   onRightIconPress?: PressableProps['onPress'];
   error?: string;
+  isInBottomSheet?: boolean;
 }
 
-const AppTextInput = forwardRef<TextInput, AppTextInputProps>(
+const AppTextInput = forwardRef<RNTextInput, AppTextInputProps>(
   (
     {
       label,
@@ -27,11 +29,18 @@ const AppTextInput = forwardRef<TextInput, AppTextInputProps>(
       leftIcon = null,
       style,
       error = '',
+      isInBottomSheet = false,
       ...rest
     },
     ref,
   ) => {
     const {colors} = useTheme();
+
+    const TextInput = useMemo(() => {
+      console.log('====', isInBottomSheet);
+      return isInBottomSheet ? BottomSheetTextInput : RNTextInput;
+    }, [isInBottomSheet]);
+
     return (
       <View style={[styles.container]}>
         <Text

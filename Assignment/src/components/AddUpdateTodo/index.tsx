@@ -1,4 +1,4 @@
-import React, {forwardRef, useState} from 'react';
+import React, {forwardRef, useEffect, useState} from 'react';
 import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -13,30 +13,10 @@ import AppTextInput from '../AppTextInput';
 import AppButton from '../AppButton';
 import styles from './styles';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
-import {addTodoItem} from '../../../helper';
+import {addTodoItem, updateTodoItem} from '../../../helper';
 
 const AddUpdateTodo = forwardRef<BottomSheetModalMethods, {}>((props, ref) => {
-  const [tiTitle, setTitle] = useState('');
   const {height} = useSafeAreaFrame();
-  const queryClient = useQueryClient();
-  const {mutate} = useMutation({
-    mutationFn: ({title}: {title: string}) => {
-      return addTodoItem(title);
-    },
-    onSuccess: () => {
-      console.log('succss');
-      queryClient.invalidateQueries({queryKey: ['todos']});
-      dismiss();
-    },
-    onError: e => {
-      console.log(e.message);
-    },
-  });
-
-  const {dismiss} = useBottomSheetModal();
-  const addNewTodo = () => {
-    mutate({title: tiTitle});
-  };
   const renderBackDropComponent = (_props: BottomSheetBackdropProps) => {
     return (
       <BottomSheetBackdrop
@@ -55,20 +35,74 @@ const AddUpdateTodo = forwardRef<BottomSheetModalMethods, {}>((props, ref) => {
       enablePanDownToClose={false}
       handleComponent={() => null}
       backdropComponent={renderBackDropComponent}
-      android_keyboardInputMode="adjustResize"
       maxDynamicContentSize={height}
-      keyboardBlurBehavior={'restore'}
-      keyboardBehavior="interactive"
-      enableDynamicSizing={true}>
-      <BottomSheetScrollView
-        contentContainerStyle={styles.sheetContainer}
-        overScrollMode={'never'}
-        bounces={false}>
-        <AppTextInput value={tiTitle} onChangeText={setTitle} label={'Title'} />
-        <AppButton title="Add" onPress={addNewTodo} />
-      </BottomSheetScrollView>
+      enableDynamicSizing={true}
+      keyboardBlurBehavior="restore">
+      {info => {
+        const itemId = info?.data?.id;
+        const title = info?.data?.title;
+        return <BottomSheetData itemId={itemId} title={title} />;
+      }}
     </BottomSheetModal>
   );
 });
 
 export default AddUpdateTodo;
+
+const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
+  const [tiTitle, setTitle] = useState('');
+
+  useEffect(() => {
+    setTitle(title);
+  }, [title]);
+
+  const queryClient = useQueryClient();
+
+  const {mutate: addNewTodo, isPending} = useMutation({
+    mutationFn: () => {
+      return addTodoItem(tiTitle);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['todos']});
+      setTitle('');
+      dismiss();
+    },
+    onError: e => {
+      console.log(e.message);
+    },
+  });
+
+  const {mutate: updateTodo, isPending: isUpdating} = useMutation({
+    mutationFn: updateTodoItem,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['todos']});
+      setTitle('');
+      dismiss();
+    },
+  });
+
+  const {dismiss} = useBottomSheetModal();
+  const handleSubmit = () => {
+    if (itemId) {
+      updateTodo({done: false, id: itemId, title: tiTitle});
+    } else {
+      addNewTodo();
+    }
+  };
+
+  return (
+    <BottomSheetScrollView contentContainerStyle={styles.sheetContainer}>
+      <AppTextInput
+        isInBottomSheet={true}
+        value={tiTitle}
+        onChangeText={setTitle}
+        label={'Title'}
+      />
+      <AppButton
+        title={itemId ? 'Update' : 'Add'}
+        onPress={handleSubmit}
+        isLoading={isPending || isUpdating}
+      />
+    </BottomSheetScrollView>
+  );
+};

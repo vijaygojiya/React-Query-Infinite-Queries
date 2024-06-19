@@ -11,9 +11,12 @@ const TabNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         lazy: true,
-        headerShown: false,
       }}>
-      <Tab.Screen name={Routes.Home} component={HomeScreen} />
+      <Tab.Screen
+        options={{title: 'Here are your tasks for today'}}
+        name={Routes.Home}
+        component={HomeScreen}
+      />
       <Tab.Screen name={Routes.Profile} component={ProfileScreen} />
     </Tab.Navigator>
   );

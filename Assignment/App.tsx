@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React, {useEffect} from 'react';
 import Application from './src/navigation/Application';
 import {AuthProvider} from './src/context';
@@ -13,15 +13,15 @@ const App = () => {
     Auth.configureGoogleSignIn();
   });
   return (
-    <GestureHandlerRootView style={styles.app}>
-      <BottomSheetModalProvider>
-        <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <GestureHandlerRootView style={styles.app}>
+        <BottomSheetModalProvider>
           <AuthProvider>
             <Application />
           </AuthProvider>
-        </QueryClientProvider>
-      </BottomSheetModalProvider>
-    </GestureHandlerRootView>
+        </BottomSheetModalProvider>
+      </GestureHandlerRootView>
+    </QueryClientProvider>
   );
 };
 

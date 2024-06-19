@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RootNavigator from './RootNavigator';
 import BootSplash from 'react-native-bootsplash';
+import {StatusBar} from 'react-native';
 
 const Application = () => {
   const hideNativeSplashScreen = async () => {
@@ -13,6 +14,7 @@ const Application = () => {
   };
   return (
     <NavigationContainer onReady={hideNativeSplashScreen}>
+      <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
       <RootNavigator />
     </NavigationContainer>
   );
