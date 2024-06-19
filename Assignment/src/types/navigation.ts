@@ -9,6 +9,7 @@ import Routes from '../navigation/routes';
 
 export type RootStackParamsList = {
   [Routes.Login]: undefined;
+  [Routes.Verification]: undefined;
   [Routes.Dashboard]: NavigatorScreenParams<TabParamList>;
 };
 

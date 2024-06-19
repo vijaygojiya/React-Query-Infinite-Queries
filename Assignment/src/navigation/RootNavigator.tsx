@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamsList} from '../types/navigation';
 import TabNavigator from './TabNavigator';
 import Routes from './routes';
-import {LoginScreen} from '../screens';
+import {LoginScreen, VerificationScreen} from '../screens';
 import {useAuth} from '../hooks';
 
 const RootStack = createNativeStackNavigator<RootStackParamsList>();
@@ -17,7 +17,13 @@ const RootNavigator = () => {
       {isLoggedIn ? (
         <RootStack.Screen component={TabNavigator} name={Routes.Dashboard} />
       ) : (
-        <RootStack.Screen component={LoginScreen} name={Routes.Login} />
+        <>
+          <RootStack.Screen component={LoginScreen} name={Routes.Login} />
+          <RootStack.Screen
+            component={VerificationScreen}
+            name={Routes.Verification}
+          />
+        </>
       )}
     </RootStack.Navigator>
   );

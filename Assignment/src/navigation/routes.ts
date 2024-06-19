@@ -1,5 +1,6 @@
 const Routes = Object.freeze({
   Login: 'Login',
+  Verification: 'Verification',
   Dashboard: 'Dashboard',
 
   // tabs

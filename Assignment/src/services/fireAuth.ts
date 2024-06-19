@@ -31,9 +31,20 @@ const signOut = async () => {
   return fireAuth.signOut();
 };
 
+const signInUserWithFirebase = ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  return fireAuth.signInWithEmailAndPassword(email, password);
+};
+
 export default {
   configureGoogleSignIn,
   googleSignIn,
   fireAuth,
   signOut,
+  signInUserWithFirebase,
 };
