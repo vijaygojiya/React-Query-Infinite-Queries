@@ -12,10 +12,13 @@ const RootNavigator = () => {
   const {isLoggedIn} = useAuth();
 
   return (
-    <RootStack.Navigator
-      screenOptions={{headerShown: false, animation: 'slide_from_left'}}>
+    <RootStack.Navigator screenOptions={{animation: 'slide_from_left'}}>
       {isLoggedIn ? (
-        <RootStack.Screen component={TabNavigator} name={Routes.Dashboard} />
+        <RootStack.Screen
+          options={{headerShown: false}}
+          component={TabNavigator}
+          name={Routes.Dashboard}
+        />
       ) : (
         <>
           <RootStack.Screen component={LoginScreen} name={Routes.Login} />

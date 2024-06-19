@@ -2,19 +2,20 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {RootStackScreensProps} from '../../../types/navigation';
-import {AppButton, AppTextInput} from '../../../components';
+import {AppButton} from '../../../components';
+import OTPInputView from '@twotalltotems/react-native-otp-input';
+import {useTheme} from '@react-navigation/native';
 
 const Verification = ({route}: RootStackScreensProps<'Verification'>) => {
   const [code, setCode] = useState('');
-  const verifyCode = () => {
+  const {colors} = useTheme();
+  const verifyCode = (otp: string) => {
     const credential = auth.PhoneAuthProvider.credential(
       route.params.verificationId,
-      code,
+      otp,
     );
-
     const multiFactorAssertion =
       auth.PhoneMultiFactorGenerator.assertion(credential);
-
     route.params.resolver
       .resolveSignIn(multiFactorAssertion)
       .then(userCredential => {
@@ -22,13 +23,43 @@ const Verification = ({route}: RootStackScreensProps<'Verification'>) => {
       });
   };
   return (
-    <View>
-      <AppTextInput value={code} onChangeText={setCode} label={'OPT'} />
-      <AppButton onPress={verifyCode} title={'Verify'} />
+    <View style={styles.container}>
+      <OTPInputView
+        pinCount={6}
+        style={styles.inputContainer}
+        code={code}
+        onCodeChanged={setCode}
+        codeInputFieldStyle={{
+          ...styles.underlineStyleBase,
+          color: colors.primary,
+        }}
+        codeInputHighlightStyle={{borderColor: colors.primary}}
+        onCodeFilled={otp => {
+          verifyCode(otp);
+        }}
+      />
+      <AppButton
+        onPress={() => {
+          verifyCode(code);
+        }}
+        title={'Verify'}
+      />
     </View>
   );
 };
 
 export default Verification;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingHorizontal: 22,
+  },
+  underlineStyleBase: {
+    height: 45,
+    borderWidth: 1,
+    borderRadius: 8,
+  },
+  inputContainer: {height: 220},
+});

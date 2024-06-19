@@ -5,7 +5,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 22,
+    backgroundColor: 'white',
   },
+  loginBtn: {borderWidth: 0},
 });
 
 export default styles;
