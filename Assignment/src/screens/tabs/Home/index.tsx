@@ -123,6 +123,7 @@ const Home = ({}: TabScreensProps<'Home'>) => {
         ListEmptyComponent={renderListEmptyComponent}
         contentContainerStyle={styles.flContainer}
         ListFooterComponent={renderListFooterComponent}
+        keyExtractor={(item, index) => `${item.id}-${index}`}
       />
       <AddButton
         onPress={() => {

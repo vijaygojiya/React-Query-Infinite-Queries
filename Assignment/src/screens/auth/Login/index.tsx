@@ -22,17 +22,32 @@ const Login = ({navigation}: RootStackScreensProps<'Login'>) => {
   const [inputs, setInputs] = useState(defaultValue);
   const [errors, setErrors] = useState(defaultValue);
 
-  const {mutate: loginWithEmailPassword} = useMutation({
+  const {mutate: loginWithEmailPassword, isPending} = useMutation({
     mutationFn: fireAuth.signInUserWithFirebase,
     onSuccess: data => {
       // fireAuth.fireAuth.currentUser?.sendEmailVerification();
       // console.log('========++====++===', JSON.stringify(data, null, 9));
     },
-    onError: error => {
+    onError: async error => {
       const {code = null} = error;
       if (code === 'auth/multi-factor-auth-required') {
-        navigation.navigate(Routes.Verification);
-        // const resolver = auth.getMultiFactorResolver(fireAuth.fireAuth, error);
+        const resolver = auth.getMultiFactorResolver(fireAuth.fireAuth, error);
+        console.log('=========', JSON.stringify(resolver, null, 9));
+        if (
+          resolver?.hints[0].factorId ===
+          auth.PhoneMultiFactorGenerator.FACTOR_ID
+        ) {
+          const hint = resolver.hints[0];
+          const sessionId = resolver.session;
+
+          const verificationId =
+            await fireAuth.fireAuth.verifyPhoneNumberWithMultiFactorInfo(
+              hint,
+              sessionId,
+            );
+
+          navigation.navigate(Routes.Verification, {verificationId, resolver});
+        }
       }
     },
   });
@@ -67,6 +82,7 @@ const Login = ({navigation}: RootStackScreensProps<'Login'>) => {
         onPress={handleLogin}
         containerStyle={{backgroundColor: colors.primary}}
         titleStyle={{color: colors.background}}
+        isLoading={isPending}
       />
 
       <AppButton title="SignIn With Google" onPress={handleSignInWithGoogle} />
