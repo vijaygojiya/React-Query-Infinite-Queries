@@ -68,6 +68,15 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
       queryClient.invalidateQueries({queryKey: ['todos']});
       setTitle('');
       dismiss();
+      notify('success', {
+        params: {
+          description: 'Added new item',
+          title: 'Error',
+        },
+        config: {
+          duration: 200,
+        },
+      });
     },
     onError: e => {
       notify('error', {
@@ -76,7 +85,7 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
           title: 'Error',
         },
         config: {
-          duration: 2000,
+          duration: 200,
         },
       });
     },
@@ -88,6 +97,15 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
       queryClient.invalidateQueries({queryKey: ['todos']});
       setTitle('');
       dismiss();
+      notify('success', {
+        params: {
+          description: 'Updated item',
+          title: 'Success',
+        },
+        config: {
+          duration: 200,
+        },
+      });
     },
     onError: e => {
       notify('error', {
@@ -96,7 +114,7 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
           title: 'Error',
         },
         config: {
-          duration: 2000,
+          duration: 200,
         },
       });
     },

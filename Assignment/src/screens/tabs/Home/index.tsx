@@ -51,6 +51,15 @@ const Home = ({}: TabScreensProps<'Home'>) => {
     },
     onSuccess: () => {
       refetch();
+      notify('success', {
+        params: {
+          description: 'Item deleted successfully',
+          title: 'Error',
+        },
+        config: {
+          duration: 2000,
+        },
+      });
     },
     onError: error => {
       notify('error', {
