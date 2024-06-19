@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useState} from 'react';
 import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -12,12 +12,31 @@ import {BottomSheetModalMethods} from '@gorhom/bottom-sheet/lib/typescript/types
 import AppTextInput from '../AppTextInput';
 import AppButton from '../AppButton';
 import styles from './styles';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
+import {addTodoItem} from '../../../helper';
 
 const AddUpdateTodo = forwardRef<BottomSheetModalMethods, {}>((props, ref) => {
+  const [tiTitle, setTitle] = useState('');
   const {height} = useSafeAreaFrame();
+  const queryClient = useQueryClient();
+  const {mutate} = useMutation({
+    mutationFn: ({title}: {title: string}) => {
+      return addTodoItem(title);
+    },
+    onSuccess: () => {
+      console.log('succss');
+      queryClient.invalidateQueries({queryKey: ['todos']});
+      dismiss();
+    },
+    onError: e => {
+      console.log(e.message);
+    },
+  });
 
   const {dismiss} = useBottomSheetModal();
-
+  const addNewTodo = () => {
+    mutate({title: tiTitle});
+  };
   const renderBackDropComponent = (_props: BottomSheetBackdropProps) => {
     return (
       <BottomSheetBackdrop
@@ -26,10 +45,6 @@ const AddUpdateTodo = forwardRef<BottomSheetModalMethods, {}>((props, ref) => {
         disappearsOnIndex={-1}
       />
     );
-  };
-
-  const closeSheet = () => {
-    dismiss();
   };
 
   return (
@@ -49,8 +64,8 @@ const AddUpdateTodo = forwardRef<BottomSheetModalMethods, {}>((props, ref) => {
         contentContainerStyle={styles.sheetContainer}
         overScrollMode={'never'}
         bounces={false}>
-        <AppTextInput label={'Title'} />
-        <AppButton title="Submit" onPress={closeSheet} />
+        <AppTextInput value={tiTitle} onChangeText={setTitle} label={'Title'} />
+        <AppButton title="Add" onPress={addNewTodo} />
       </BottomSheetScrollView>
     </BottomSheetModal>
   );

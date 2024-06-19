@@ -1,4 +1,4 @@
-import {FlatList, ListRenderItem, View} from 'react-native';
+import {FlatList, ListRenderItem, Text, View} from 'react-native';
 import React, {useEffect, useRef} from 'react';
 import {TabScreensProps} from '../../../types/navigation';
 import {useInfiniteQuery} from '@tanstack/react-query';
@@ -30,7 +30,7 @@ const Home = ({}: TabScreensProps<'Home'>) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ['t'],
+    queryKey: ['todos'],
 
     initialPageParam: 0,
 
@@ -47,12 +47,16 @@ const Home = ({}: TabScreensProps<'Home'>) => {
   });
   console.log('=====data', JSON.stringify(data, null, 9));
 
-  const renderTodoItem: ListRenderItem<TodoItem> = () => {
-    return <View />;
+  const renderTodoItem: ListRenderItem<TodoItem> = ({item, index}) => {
+    return <Text>{item.title}</Text>;
   };
   return (
     <View style={styles.screenContainer}>
-      <FlatList data={[]} renderItem={renderTodoItem} />
+      <FlatList
+        onEndReached={fetchNextPage}
+        data={data?.pages.flat()}
+        renderItem={renderTodoItem}
+      />
       <AddButton
         onPress={() => {
           addTodoSheetRef.current?.present();
