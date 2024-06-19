@@ -18,6 +18,7 @@ import {
 } from '../../../components';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import typography from '../../../styles/typography';
+import {useNotifications} from '../../../../App';
 
 const PAGE_LIMIT = 6;
 
@@ -43,13 +44,24 @@ const Home = ({}: TabScreensProps<'Home'>) => {
       return lastPageParam + 1;
     },
   });
-
+  const {notify} = useNotifications();
   const {mutate: deleteTodo, isPending: isDeleting} = useMutation({
     mutationFn: ({id}: {id: string}) => {
       return deleteTodoItem(id);
     },
     onSuccess: () => {
       refetch();
+    },
+    onError: error => {
+      notify('error', {
+        params: {
+          description: error.message,
+          title: 'Error',
+        },
+        config: {
+          duration: 2000,
+        },
+      });
     },
   });
 

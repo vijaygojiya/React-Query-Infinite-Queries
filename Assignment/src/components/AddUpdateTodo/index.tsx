@@ -14,6 +14,7 @@ import AppButton from '../AppButton';
 import styles from './styles';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import {addTodoItem, updateTodoItem} from '../../../helper';
+import {useNotifications} from '../../../App';
 
 const AddUpdateTodo = forwardRef<BottomSheetModalMethods, {}>((props, ref) => {
   const {height} = useSafeAreaFrame();
@@ -56,6 +57,7 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
     setTitle(title);
   }, [title]);
 
+  const {notify} = useNotifications();
   const queryClient = useQueryClient();
 
   const {mutate: addNewTodo, isPending} = useMutation({
@@ -68,7 +70,15 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
       dismiss();
     },
     onError: e => {
-      console.log(e.message);
+      notify('error', {
+        params: {
+          description: e.message,
+          title: 'Error',
+        },
+        config: {
+          duration: 2000,
+        },
+      });
     },
   });
 
@@ -78,6 +88,17 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
       queryClient.invalidateQueries({queryKey: ['todos']});
       setTitle('');
       dismiss();
+    },
+    onError: e => {
+      notify('error', {
+        params: {
+          description: e.message,
+          title: 'Error',
+        },
+        config: {
+          duration: 2000,
+        },
+      });
     },
   });
 

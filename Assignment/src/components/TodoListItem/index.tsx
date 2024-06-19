@@ -28,7 +28,7 @@ const TodoListItem = ({title, id, onEdit, onDelete}: TodoListItemProps) => {
 
   return (
     <View style={styles.container}>
-      <Text style={typography.body}>{title}</Text>
+      <Text style={[typography.body, styles.text]}>{title}</Text>
       <View style={styles.buttonsContainer}>
         <Pressable style={styles.editButton} onPress={handleEditItem}>
           <Edit />
@@ -43,17 +43,19 @@ const TodoListItem = ({title, id, onEdit, onDelete}: TodoListItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
     borderBottomColor: '#ccc',
     backgroundColor: '#fff',
+    rowGap: 8,
   },
-  buttonsContainer: {},
+  text: {flex: 1},
+  buttonsContainer: {
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+  },
   editButton: {
     paddingVertical: 5,
     paddingHorizontal: 10,

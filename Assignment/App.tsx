@@ -7,6 +7,10 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 const queryClient = new QueryClient();
+import {createNotifications} from 'react-native-notificated';
+
+export const {NotificationsProvider, useNotifications, ...events} =
+  createNotifications();
 
 const App = () => {
   useEffect(() => {
@@ -15,11 +19,13 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={styles.app}>
-        <BottomSheetModalProvider>
-          <AuthProvider>
-            <Application />
-          </AuthProvider>
-        </BottomSheetModalProvider>
+        <NotificationsProvider>
+          <BottomSheetModalProvider>
+            <AuthProvider>
+              <Application />
+            </AuthProvider>
+          </BottomSheetModalProvider>
+        </NotificationsProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>
   );

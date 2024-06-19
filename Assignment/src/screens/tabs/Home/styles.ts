@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexGrow: 1,
     rowGap: 14,
-    paddingVertical: 56,
+    paddingTop: 22,
+    paddingBottom: 56,
   },
   emptyContainer: {
     flex: 1,
