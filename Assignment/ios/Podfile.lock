@@ -495,9 +495,16 @@ PODS:
     - Firebase/Auth (= 10.24.0)
     - React-Core
     - RNFBApp
+  - RNGestureHandler (2.16.2):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
   - RNGoogleSignin (12.2.1):
     - GoogleSignIn (~> 7.1)
     - React-Core
+  - RNReanimated (3.12.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
+    - ReactCommon/turbomodule/core
   - RNScreens (3.32.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -551,7 +558,9 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -660,8 +669,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
     :path: "../node_modules/@react-native-firebase/auth"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
     :path: "../node_modules/@react-native-google-signin/google-signin"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -725,7 +738,9 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNFBApp: 91311b27bc9a33e23b76a62825afd1635501018a
   RNFBAuth: 92172d8976baaa829825017174106e2b2c550319
+  RNGestureHandler: 1e151ce3bcb7591048730479f755cd52f96d39ac
   RNGoogleSignin: 08dc4ba7eac2096c7fecfe109f0950fa4683c803
+  RNReanimated: 781c863aec4e981f22ab3f78f7905a5d77693820
   RNScreens: 63bef6a0e43add62eaa82d2e4ee753d89f3bc42d
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: c32e0be1a17f8f1f0e633a3122f7666441f52c82

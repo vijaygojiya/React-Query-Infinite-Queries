@@ -1,7 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  screenContainer: {flex: 1},
+  sheetContainer: {
+    paddingHorizontal: 22,
+    paddingVertical: 22,
+  },
 });
 
 export default styles;
