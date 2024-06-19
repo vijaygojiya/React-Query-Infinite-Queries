@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {RootStackScreensProps} from '../../../types/navigation';
 import {AppButton} from '../../../components';
 import styles from './styles';
-import {Auth} from '../../../services/firebase';
+import {Auth} from '../../../services';
 
 const Login = ({}: RootStackScreensProps<'Login'>) => {
   const handleSignInWithGoogle = async () => {

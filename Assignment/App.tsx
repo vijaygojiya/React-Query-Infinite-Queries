@@ -2,7 +2,7 @@ import {StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 import Application from './src/navigation/Application';
 import {AuthProvider} from './src/context';
-import {Auth} from './src/services/firebase';
+import {Auth} from './src/services';
 
 const App = () => {
   useEffect(() => {

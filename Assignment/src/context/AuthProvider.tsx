@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {Auth} from '../services/firebase';
+import {Auth} from '../services';
 
 export const AuthContext = createContext<{
   isLoggedIn: boolean;

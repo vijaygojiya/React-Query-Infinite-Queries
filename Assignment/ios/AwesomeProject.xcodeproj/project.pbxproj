@@ -9,14 +9,18 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* AwesomeProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AwesomeProjectTests.m */; };
 		025894832C22A720006027AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 025894822C22A720006027AF /* GoogleService-Info.plist */; };
+		0EB16983BC324D14B4B8F0D8 /* FiraCode-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3D40A556D24176ADFD309D /* FiraCode-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		6132EF182BDFF13200BBE14D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */; };
+		702E7DA623994F7083A64844 /* FiraCode-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63945651DEF046C5ADC93AD0 /* FiraCode-SemiBold.ttf */; };
 		7B57480721D4F404D1E17D56 /* Pods_AwesomeProject_AwesomeProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFBF9212240845AE756AA4B /* Pods_AwesomeProject_AwesomeProjectTests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		972635691A6C4951A496281B /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 594B101FFF2649B0B9C97AAD /* BootSplash.storyboard */; };
+		A7A920CA4480492BB96E23DF /* FiraCode-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD682953CAB54DEA8423AB8B /* FiraCode-Medium.ttf */; };
 		ABF583996FE2C4BA2301FFB4 /* Pods_AwesomeProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D0168386B7EAB0D480885A /* Pods_AwesomeProject.framework */; };
+		E10EBF0716CA43D79F4C242D /* FiraCode-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB81EE579C714E7698523FE3 /* FiraCode-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,9 +50,13 @@
 		594B101FFF2649B0B9C97AAD /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = AwesomeProject/BootSplash.storyboard; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-AwesomeProject-AwesomeProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject-AwesomeProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-AwesomeProject-AwesomeProjectTests/Pods-AwesomeProject-AwesomeProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = AwesomeProject/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		63945651DEF046C5ADC93AD0 /* FiraCode-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraCode-SemiBold.ttf"; path = "../src/assets/fonts/FiraCode-SemiBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AwesomeProject/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig"; path = "Target Support Files/Pods-AwesomeProject-AwesomeProjectTests/Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		8BFBF9212240845AE756AA4B /* Pods_AwesomeProject_AwesomeProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeProject_AwesomeProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB81EE579C714E7698523FE3 /* FiraCode-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraCode-Bold.ttf"; path = "../src/assets/fonts/FiraCode-Bold.ttf"; sourceTree = "<group>"; };
+		DD682953CAB54DEA8423AB8B /* FiraCode-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraCode-Medium.ttf"; path = "../src/assets/fonts/FiraCode-Medium.ttf"; sourceTree = "<group>"; };
+		EA3D40A556D24176ADFD309D /* FiraCode-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraCode-Regular.ttf"; path = "../src/assets/fonts/FiraCode-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -114,6 +122,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		81B83187438E4CD4AC830D93 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DB81EE579C714E7698523FE3 /* FiraCode-Bold.ttf */,
+				DD682953CAB54DEA8423AB8B /* FiraCode-Medium.ttf */,
+				EA3D40A556D24176ADFD309D /* FiraCode-Regular.ttf */,
+				63945651DEF046C5ADC93AD0 /* FiraCode-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +151,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				81B83187438E4CD4AC830D93 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -257,6 +278,10 @@
 				025894832C22A720006027AF /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				972635691A6C4951A496281B /* BootSplash.storyboard in Resources */,
+				E10EBF0716CA43D79F4C242D /* FiraCode-Bold.ttf in Resources */,
+				A7A920CA4480492BB96E23DF /* FiraCode-Medium.ttf in Resources */,
+				0EB16983BC324D14B4B8F0D8 /* FiraCode-Regular.ttf in Resources */,
+				702E7DA623994F7083A64844 /* FiraCode-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,7 +661,10 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -714,7 +742,10 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
