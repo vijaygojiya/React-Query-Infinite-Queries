@@ -65,13 +65,16 @@ const Home = ({}: TabScreensProps<'Home'>) => {
   };
 
   const renderListEmptyComponent = () => {
-    if (isLoading || isFetching) {
-      return <ActivityIndicator size={'large'} />;
-    }
     return (
-      <Text style={typography.caption}>
-        No, Todo items found Please add new
-      </Text>
+      <View style={styles.emptyContainer}>
+        {isLoading || isFetching ? (
+          <ActivityIndicator size={'large'} />
+        ) : (
+          <Text style={typography.caption}>
+            No, Todo items found Please add new
+          </Text>
+        )}
+      </View>
     );
   };
 
@@ -85,11 +88,7 @@ const Home = ({}: TabScreensProps<'Home'>) => {
     if (isFetchingNextPage) {
       return <ActivityIndicator size="large" />;
     }
-    if (!hasNextPage) {
-      return (
-        <Text style={typography.caption}>You all catch up,no more todo</Text>
-      );
-    }
+
     return null;
   };
 
@@ -99,7 +98,9 @@ const Home = ({}: TabScreensProps<'Home'>) => {
         onEndReached={handleOnEndReach}
         data={data?.pages.flat()}
         renderItem={renderTodoItem}
+        showsVerticalScrollIndicator={false}
         ListEmptyComponent={renderListEmptyComponent}
+        contentContainerStyle={styles.flContainer}
         ListFooterComponent={renderListFooterComponent}
       />
       <AddButton

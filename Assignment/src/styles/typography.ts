@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import AppFonts from '../assets';
+import AppFonts from '../assets/fonts';
 
 const typography = StyleSheet.create({
   // Headings

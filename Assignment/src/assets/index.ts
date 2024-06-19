@@ -1,8 +1,4 @@
-const AppFonts = {
-  bold: 'FiraCode-Bold.ttf',
-  medium: 'FiraCode-Medium.ttf',
-  regular: 'FiraCode-Regular.ttf',
-  semiBold: 'FiraCode-SemiBold.ttf',
-};
-
-export default AppFonts;
+export {default as Home} from './icons/home-1.svg';
+export {default as Profile} from './icons/user-1.svg';
+export {default as Delete} from './icons/trash-2.svg';
+export {default as Edit} from './icons/edit-2.svg';

@@ -96,6 +96,8 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
         isInBottomSheet={true}
         value={tiTitle}
         onChangeText={setTitle}
+        placeholder="Type something"
+        placeholderTextColor={'#00000033'}
         label={'Title'}
       />
       <AppButton

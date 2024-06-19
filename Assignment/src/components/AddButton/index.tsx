@@ -21,7 +21,7 @@ const AddButton = ({size = 52, onPress}: AddButtonProps) => {
           backgroundColor: colors.primary,
         },
       ]}>
-      <Text style={{color: colors.background}}>+</Text>
+      <Text style={{color: colors.background, fontSize: 22}}>+</Text>
     </Pressable>
   );
 };
