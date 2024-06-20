@@ -19,6 +19,7 @@ export const AuthContext = createContext<{
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({children}) => {
   const [isLoggedIn, setLoggedIn] = useState<boolean | null>(false);
+  console.log('==========', Auth.fireAuth.onAuthStateChanged);
   useEffect(() => {
     const subscriber = Auth.fireAuth.onAuthStateChanged(user => {
       setLoggedIn(!!user?.email);
