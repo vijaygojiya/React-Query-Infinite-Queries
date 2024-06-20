@@ -44,6 +44,7 @@ const Login = ({navigation}: RootStackScreensProps<'Login'>) => {
   const [inputs, setInputs] = useState(defaultValue);
   const [errors, setErrors] = useState(defaultValue);
   const {colors} = useTheme();
+
   const {notify} = useNotifications();
 
   const inputRefs = useRef<Record<inputKeys, null | TextInput>>({
@@ -89,7 +90,7 @@ const Login = ({navigation}: RootStackScreensProps<'Login'>) => {
           },
         });
         const resolver = auth.getMultiFactorResolver(fireAuth.fireAuth, error);
-        console.log('=======++====++===', JSON.stringify(resolver, null, 9));
+
         if (
           resolver?.hints[0].factorId ===
           auth.PhoneMultiFactorGenerator.FACTOR_ID

@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     Auth.configureGoogleSignIn();
   });
-  
+
   return (
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={styles.app}>
