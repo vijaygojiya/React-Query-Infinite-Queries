@@ -33,7 +33,7 @@ const AddUpdateTodo = forwardRef<BottomSheetModalMethods, {}>((props, ref) => {
       ref={ref}
       index={0}
       overDragResistanceFactor={0}
-      enablePanDownToClose={false}
+      animateOnMount={true}
       handleComponent={() => null}
       backdropComponent={renderBackDropComponent}
       maxDynamicContentSize={height}
@@ -58,6 +58,8 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
   }, [title]);
 
   const {notify} = useNotifications();
+  const {dismiss} = useBottomSheetModal();
+
   const queryClient = useQueryClient();
 
   const {mutate: addNewTodo, isPending} = useMutation({
@@ -120,7 +122,6 @@ const BottomSheetData = ({itemId, title}: {itemId?: string; title: string}) => {
     },
   });
 
-  const {dismiss} = useBottomSheetModal();
   const handleSubmit = () => {
     if (itemId) {
       updateTodo({done: false, id: itemId, title: tiTitle});

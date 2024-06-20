@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {RootStackScreensProps} from '../../../types/navigation';
@@ -28,6 +28,7 @@ const Verification = ({route}: RootStackScreensProps<'Verification'>) => {
         pinCount={6}
         style={styles.inputContainer}
         code={code}
+        autoFocusOnLoad={false}
         onCodeChanged={setCode}
         codeInputFieldStyle={{
           ...styles.underlineStyleBase,
@@ -39,6 +40,7 @@ const Verification = ({route}: RootStackScreensProps<'Verification'>) => {
         }}
       />
       <AppButton
+        disabled={code.length !== 6}
         onPress={() => {
           verifyCode(code);
         }}

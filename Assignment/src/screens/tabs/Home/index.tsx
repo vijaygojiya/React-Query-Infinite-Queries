@@ -1,3 +1,4 @@
+import React, {useRef, useCallback, useMemo} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -5,10 +6,9 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, {useRef} from 'react';
-import {TabScreensProps} from '../../../types/navigation';
 import {useInfiniteQuery, useMutation} from '@tanstack/react-query';
 import {TodoItem, deleteTodoItem, getTodoItems} from '../../../../helper';
+import {TabScreensProps} from '../../../types/navigation';
 import styles from './styles';
 import {
   AddButton,
@@ -19,10 +19,11 @@ import {
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import typography from '../../../styles/typography';
 import {useNotifications} from '../../../../App';
+import {useTheme} from '@react-navigation/native';
 
 const PAGE_LIMIT = 6;
 
-const Home = ({}: TabScreensProps<'Home'>) => {
+const Home: React.FC<TabScreensProps<'Home'>> = () => {
   const {
     data,
     fetchNextPage,
@@ -34,27 +35,23 @@ const Home = ({}: TabScreensProps<'Home'>) => {
   } = useInfiniteQuery({
     queryKey: ['todos'],
     initialPageParam: 0,
-    queryFn: ({pageParam}) => {
-      return getTodoItems(pageParam, PAGE_LIMIT);
-    },
-    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
-      if (lastPage.length === 0) {
-        return undefined;
-      }
-      return lastPageParam + 1;
-    },
+    queryFn: ({pageParam}) => getTodoItems(pageParam, PAGE_LIMIT),
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
+      lastPage.length ? lastPageParam + 1 : undefined,
   });
+
   const {notify} = useNotifications();
-  const {mutate: deleteTodo, isPending: isDeleting} = useMutation({
-    mutationFn: ({id}: {id: string}) => {
-      return deleteTodoItem(id);
-    },
+  const {colors} = useTheme();
+  const addTodoSheetRef = useRef<BottomSheetModal>(null);
+
+  const deleteTodo = useMutation({
+    mutationFn: ({id}: {id: string}) => deleteTodoItem(id),
     onSuccess: () => {
       refetch();
       notify('success', {
         params: {
           description: 'Item deleted successfully',
-          title: 'Error',
+          title: 'Success',
         },
         config: {
           duration: 2000,
@@ -74,64 +71,63 @@ const Home = ({}: TabScreensProps<'Home'>) => {
     },
   });
 
-  const addTodoSheetRef = useRef<BottomSheetModal>(null);
-  const handleEditItem = (props: {id: string; title: string}) => {
+  const handleEditItem = useCallback((props: {id: string; title: string}) => {
     addTodoSheetRef.current?.present(props);
-  };
+  }, []);
 
-  const renderTodoItem: ListRenderItem<TodoItem> = ({item}) => {
-    return (
-      <TodoListItem {...item} onDelete={deleteTodo} onEdit={handleEditItem} />
-    );
-  };
+  const renderTodoItem = useCallback<ListRenderItem<TodoItem>>(
+    ({item}) => (
+      <TodoListItem
+        {...item}
+        onDelete={deleteTodo.mutate}
+        onEdit={handleEditItem}
+      />
+    ),
+    [deleteTodo.mutate, handleEditItem],
+  );
 
-  const renderListEmptyComponent = () => {
-    return (
+  const renderListEmptyComponent = useCallback(
+    () => (
       <View style={styles.emptyContainer}>
         {isLoading || isFetching ? (
-          <ActivityIndicator size={'large'} />
+          <ActivityIndicator size="large" />
         ) : (
-          <Text style={typography.caption}>
-            No, Todo items found Please add new
-          </Text>
+          <Text style={typography.caption}>No Todo items found</Text>
         )}
       </View>
-    );
-  };
+    ),
+    [isLoading, isFetching],
+  );
 
-  const handleOnEndReach = () => {
-    if (isFetching || isFetchingNextPage || !hasNextPage) {
-      return;
+  const handleOnEndReach = useCallback(() => {
+    if (!isFetching && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage();
     }
-    fetchNextPage();
-  };
-  const renderListFooterComponent = () => {
-    if (isFetchingNextPage) {
-      return <ActivityIndicator size="large" />;
-    }
+  }, [isFetching, isFetchingNextPage, hasNextPage, fetchNextPage]);
 
-    return null;
-  };
+  const renderListFooterComponent = useCallback(
+    () => (isFetchingNextPage ? <ActivityIndicator size="large" /> : null),
+    [isFetchingNextPage],
+  );
+
+  const flatListData = useMemo(() => data?.pages.flat() || [], [data]);
 
   return (
-    <View style={styles.screenContainer}>
+    <View
+      style={[styles.screenContainer, {backgroundColor: colors.background}]}>
       <FlatList
-        onEndReached={handleOnEndReach}
-        data={data?.pages.flat()}
+        data={flatListData}
         renderItem={renderTodoItem}
+        onEndReached={handleOnEndReach}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={renderListEmptyComponent}
         contentContainerStyle={styles.flContainer}
         ListFooterComponent={renderListFooterComponent}
         keyExtractor={(item, index) => `${item.id}-${index}`}
       />
-      <AddButton
-        onPress={() => {
-          addTodoSheetRef.current?.present();
-        }}
-      />
+      <AddButton onPress={() => addTodoSheetRef.current?.present()} />
       <AddUpdateTodo ref={addTodoSheetRef} />
-      <Loader isLoading={isDeleting} />
+      <Loader isLoading={deleteTodo.isPending} />
     </View>
   );
 };
