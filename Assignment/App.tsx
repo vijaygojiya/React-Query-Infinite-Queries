@@ -8,6 +8,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 const queryClient = new QueryClient();
 import {createNotifications} from 'react-native-notificated';
+import ThemeProvider from './src/context/themeContext';
 
 export const {NotificationsProvider, useNotifications, ...events} =
   createNotifications();
@@ -19,15 +20,17 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView style={styles.app}>
-        <NotificationsProvider>
-          <BottomSheetModalProvider>
-            <AuthProvider>
-              <Application />
-            </AuthProvider>
-          </BottomSheetModalProvider>
-        </NotificationsProvider>
-      </GestureHandlerRootView>
+      <ThemeProvider>
+        <GestureHandlerRootView style={styles.app}>
+          <NotificationsProvider>
+            <BottomSheetModalProvider>
+              <AuthProvider>
+                <Application />
+              </AuthProvider>
+            </BottomSheetModalProvider>
+          </NotificationsProvider>
+        </GestureHandlerRootView>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

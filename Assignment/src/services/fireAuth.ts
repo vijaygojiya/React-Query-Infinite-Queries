@@ -28,7 +28,23 @@ const googleSignIn = async () => {
 };
 
 const signOut = async () => {
-  return fireAuth.signOut();
+  try {
+    const firebaseData = fireAuth.currentUser;
+
+    if (firebaseData) {
+      const provider = firebaseData.providerData[0]?.providerId;
+
+      if (provider === 'google.com') {
+        await GoogleSignin.revokeAccess();
+
+        await GoogleSignin.signOut();
+      }
+
+      await fireAuth.signOut();
+    }
+  } catch (error) {
+    throw error;
+  }
 };
 
 const signInUserWithFirebase = ({
